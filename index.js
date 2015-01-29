@@ -2,7 +2,9 @@
  * @file isTtf
  * @author junmer
  *
- * @see ynakajima/ttf.js
+ * @see http://www.adobe.com/devnet/font.html
+ *      https://developer.apple.com/fonts/TrueType-Reference-Manual/
+ *      ynakajima/ttf.js
  */
 
 /* eslint-env node */
@@ -144,15 +146,6 @@ module.exports = function (buffer) {
         return false;
     }
 
-    // // num tables
-    // view.getUint16(4, false);
-    // // searchRenge
-    // view.getUint16(6, false);
-    // // entrySelector
-    // view.getUint16(8, false);
-    // // rengeShift
-    // view.getUint16(10, false);
-
     // num tables
     var numTables = view.getUint16(4, false);
 
@@ -161,10 +154,18 @@ module.exports = function (buffer) {
         return false;
     }
 
+    // // searchRenge
+    // view.getUint16(6, false);
+    // // entrySelector
+    // view.getUint16(8, false);
+    // // rengeShift
+    // view.getUint16(10, false);
+
     // tableDirectory
     var tableDirectory;
     try {
         // tableDirectoryの取得と各テーブルの初期化
+        // 12 is offset after rengeShift
         tableDirectory = new TTFTableDirectory(view, 12, numTables);
     }
     catch (ex) {
