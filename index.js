@@ -41,10 +41,10 @@ function padZero(_char, width) {
  * @param  {Function} next       isnext
  * @return {number}              fixed number
  */
-// function getViewFixed(view, byteOffset, next) {
-//     var val = view.getInt32(byteOffset, next) / 65536.0;
-//     return Math.ceil(val * 100000) / 100000;
-// }
+function getViewFixed(view, byteOffset, next) {
+    var val = view.getInt32(byteOffset, next) / 65536.0;
+    return Math.ceil(val * 100000) / 100000;
+}
 
 /**
  * getViewString
@@ -137,7 +137,13 @@ module.exports = function (buffer) {
     var view = new DataView(ttf, 0, ttf.byteLength, false);
 
     // version
-    // getViewFixed(view, 0, false);
+    var version = getViewFixed(view, 0, false);
+
+    // version must be 1
+    if (version !== 1) {
+        return false;
+    }
+
     // // num tables
     // view.getUint16(4, false);
     // // searchRenge
@@ -150,6 +156,12 @@ module.exports = function (buffer) {
     // num tables
     var numTables = view.getUint16(4, false);
 
+    // num tables must < 100
+    if (numTables > 100) {
+        return false;
+    }
+
+    // tableDirectory
     var tableDirectory;
     try {
         // tableDirectoryの取得と各テーブルの初期化
@@ -159,8 +171,9 @@ module.exports = function (buffer) {
         return false;
     }
 
-    // 判断 每个 ttf 的 key 是否存在
-    return ttfTables.every(function (tag) {
+    // 判断 每个 ttf 的 tag 是否存在
+    // 不需要 全有
+    return ttfTables.some(function (tag) {
         return tableDirectory.hasOwnProperty(tag);
     });
 
