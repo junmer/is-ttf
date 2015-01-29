@@ -1,6 +1,6 @@
 {
   "name": "is-ttf",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Check if a String/Buffer is TTF",
   "license": "MIT",
   "repository": "junmer/is-ttf",
