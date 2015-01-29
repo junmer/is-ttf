@@ -120,7 +120,6 @@ var ttfTables = [
     'post'
 ];
 
-
 /**
  * isTtf
  *

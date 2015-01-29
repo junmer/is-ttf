@@ -9,7 +9,6 @@
 $ npm install --save is-ttf
 ```
 
-
 ## Usage
 
 ```js
