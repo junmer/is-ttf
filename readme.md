@@ -1,6 +1,6 @@
 # is-ttf [![Build Status](https://travis-ci.org/junmer/is-ttf.svg?branch=master)](https://travis-ci.org/junmer/is-ttf)
 
-> Check if a String/Buffer is [TTF](http://en.wikipedia.org/wiki/TTF)
+> Check if a String/Buffer is [TTF](http://en.wikipedia.org/wiki/TrueType)
 
 
 ## Install
