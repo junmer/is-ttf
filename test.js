@@ -23,3 +23,11 @@ it('should be false when detect other type file', function () {
     assert(!isTtf(fs.readFileSync('package.json')));
 });
 
+it('should detect TTF by opts.tables', function () {
+    assert(!isTtf(
+        fs.readFileSync('pixel.ttf').toString('binary'),
+        {
+            tables: ['cvt']
+        }
+    ));
+});

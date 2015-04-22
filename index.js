@@ -125,10 +125,14 @@ var ttfTables = [
 /**
  * isTtf
  *
- * @param  {Buffer|String} buffer buffer
+ * @param  {ArrayBuffer|Buffer|String} buffer buffer
+ * @param  {Object} opts opts
+ * @param  {Array} opts.tables tables
  * @return {boolean}        is ttf
  */
-module.exports = function (buffer) {
+module.exports = function (buffer, opts) {
+
+    opts = opts || {};
 
     var ttf = buffer instanceof ArrayBuffer
         ? buffer
@@ -174,7 +178,17 @@ module.exports = function (buffer) {
 
     // 判断 每个 ttf 的 tag 是否存在
     // 不需要 全有
-    return ttfTables.some(function (tag) {
+    var checkFun = 'some';
+    var checkTables = ttfTables;
+
+    // 若指定 tables
+    // 需要全有
+    if (opts.tables) {
+        checkFun = 'every';
+        checkTables = opts.tables;
+    }
+
+    return checkTables[checkFun](function (tag) {
         return tableDirectory.hasOwnProperty(tag);
     });
 

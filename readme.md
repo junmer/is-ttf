@@ -17,6 +17,14 @@ isTtf(fs.readFileSync('pixel.ttf'));
 //=> true
 ```
 
+## API
+
+### isTtf(source[, options])
+
+* `source`: ArrayBuffer | Buffer | String
+* `options`:
+    * `tables`: necessarily tables of ttf
+
 ## thx
 
 - [ynakajima/ttf.js](https://github.com/ynakajima/ttf.js)
