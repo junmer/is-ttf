@@ -21,9 +21,9 @@ isTtf(fs.readFileSync('pixel.ttf'));
 
 ### isTtf(source[, options])
 
-* `source`: ArrayBuffer | Buffer | String
-* `options`:
-    * `tables`: necessarily tables of ttf
+* `source` ArrayBuffer | Buffer | String
+* `options`
+    * `tables` necessarily tables of ttf
 
 ## thx
 
