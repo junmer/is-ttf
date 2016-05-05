@@ -132,6 +132,10 @@ var ttfTables = [
  */
 module.exports = function (buffer, opts) {
 
+    if (!buffer || !buffer.length) {
+        return false;
+    }
+
     opts = opts || {};
 
     var ttf = buffer instanceof ArrayBuffer

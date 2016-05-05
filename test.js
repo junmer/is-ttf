@@ -8,6 +8,14 @@ var assert = require('assert');
 var fs = require('fs');
 var isTtf = require('./');
 
+it('should detect TTF from Empty', function () {
+    assert(!isTtf());
+});
+
+it('should detect TTF from Empty Buffer', function () {
+    assert(!isTtf(new Buffer('')));
+});
+
 it('should detect TTF from String', function () {
     assert(isTtf(
         fs.readFileSync('pixel.ttf').toString('binary')
